@@ -1,7 +1,8 @@
-{% extends 'base.html' %} {% block content %}
-
+{% extends 'base.html' %} {% block content %}<div class="row" style="margin-bottom: 0px !important"></div> {% for project in projects %}
+<!--projects  -->
+  {% if forloop.counter0|divisibleby:3 %}
+</div>
 <div class="row">
-  {% for project in projects %}
   <div class="col s12 m6 l4 center-align">
     <a href="{{project.link}}"><h1>{{project.name}}</h1></a>
     <a href="{{project.link}}"
@@ -10,12 +11,18 @@
     <h2>{{project.p_type}}</h2>
     <h3>Tech Stack - {{project.skills}}</h3>
   </div>
-
-  {% endfor %}
+  {% else %}
+  <div class="col s12 m6 l4 center-align">
+    <a href="{{project.link}}"><h1>{{project.name}}</h1></a>
+    <a href="{{project.link}}"
+      ><img class="project-image" src="media/{{project.photo}}" alt=""
+    /></a>
+    <h2>{{project.p_type}}</h2>
+    <h3>Tech Stack - {{project.skills}}</h3>
+  </div>
+  {% endif %} {% endfor %}</div> {% endblock content %} {% block footerlinks %}
+  <a class="grey-text text-lighten-4 right" href="mailto: {{resume.mail}}"
+    >Mail - {{resume.mail}}</a
+  >
+  {% endblock footerlinks %}
 </div>
-
-{% endblock content %} {% block footerlinks %}
-<a class="grey-text text-lighten-4 right" href="mailto: {{resume.mail}}"
-  >Mail - {{resume.mail}}</a
->
-{% endblock footerlinks %}

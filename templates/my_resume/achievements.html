@@ -1,21 +1,28 @@
-{% extends 'base.html' %} {% block content %}
-
+{% extends 'base.html' %} {% block content %}<div class="row" style="margin-bottom: 0px !important"></div> {% for achievement in achievements %}
+<!--projects  -->
+  {% if forloop.counter0|divisibleby:3 %}
+</div>
 <div class="row">
-  {% for achievement in achievements %}
   <div class="col s12 m6 l4 center-align">
     <a href="{{achievement.link}}"><h1>{{achievement.name}}</h1></a>
     <a href="{{achievement.link}}"
       ><img class="project-image" src="media/{{achievement.photo}}" alt=""
     /></a>
     <h2>{{achievement.a_type}}</h2>
-    <h3>{{achievement.description}}</h3>
+    <h3>Tech Stack - {{achievement.description}}</h3>
   </div>
-
-  {% endfor %}
+  {% else %}
+  <div class="col s12 m6 l4 center-align">
+    <a href="{{achievement.link}}"><h1>{{achievement.name}}</h1></a>
+    <a href="{{achievement.link}}"
+      ><img class="project-image" src="media/{{achievement.photo}}" alt=""
+    /></a>
+    <h2>{{achievement.a_type}}</h2>
+    <h3>Tech Stack - {{achievement.description}}</h3>
+  </div>
+  {% endif %} {% endfor %}</div> {% endblock content %} {% block footerlinks %}
+  <a class="grey-text text-lighten-4 right" href="mailto: {{resume.mail}}"
+    >Mail - {{resume.mail}}</a
+  >
+  {% endblock footerlinks %}
 </div>
-
-{% endblock content %} {% block footerlinks %}
-<a class="grey-text text-lighten-4 right" href="mailto: {{resume.mail}}"
-  >Mail - {{resume.mail}}</a
->
-{% endblock footerlinks %}
