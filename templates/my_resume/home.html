@@ -1,0 +1,68 @@
+{% extends 'base.html' %} {% block content %}
+<div class="section container">
+  <div class="row">
+    <div class="col s12 center-align">
+      <img
+        src="/media/{{resume.photo}}"
+        alt=""
+        class="circle responsive-img resume_photo"
+      />
+      <h1>
+        Hi I am {{resume.name}} a Web Developer and a Data Science Enthusiast
+      </h1>
+    </div>
+  </div>
+</div>
+<div class="section background-black text-white">
+  <div class="row container">
+    <div class="col s12 m6">
+      <h1>Some Info About Me</h1>
+    </div>
+    <div class="col s12 m6">
+      <h2>{{resume.description}}</h2>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="row container">
+    <div class="col s12 center-align">
+      <h1>My Eduction</h1>
+    </div>
+  </div>
+  <div class="row">
+    {% for education in educations %}
+    <div class="col s12 m6">
+      <div class="card-panel background-black center-align text-white">
+        <h1>{{education.institute}}</h1>
+        <h2>{{education.city}} {{education.state}}</h2>
+        <h3>
+          {{education.degree}}
+          {{education.from_date.year}}-{{education.to_date.year}}
+        </h3>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="section">
+  <div class="row container">
+    <div class="col s12 center-align">
+      <h1>My Skills</h1>
+    </div>
+  </div>
+  <div class="container">
+    {% for skill in skills %}
+    <div id="skills">
+      <progress value="{{skill.level}}" max="100"></progress
+      ><span>{{skill.name}}</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %} {% block footerlinks %}
+<a class="grey-text text-lighten-4 right" href="mailto: {{resume.mail}}"
+  >Mail - {{resume.mail}}</a
+>
+{% endblock footerlinks %}

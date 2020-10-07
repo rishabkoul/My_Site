@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    {% for project in projects %}
+    <div class="col s12 m6 center-align">
+      <a href="{{project.link}}"><h1>{{project.name}}</h1></a>
+      <a href="{{project.link}}"
+        ><img class="project-image" src="media/{{project.photo}}" alt=""
+      /></a>
+      <h2>{{project.p_type}}</h2>
+      <h3>Tech Stack - {{project.skills}}</h3>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %} {% block footerlinks %}
+<a class="grey-text text-lighten-4 right" href="mailto: {{resume.mail}}"
+  >Mail - {{resume.mail}}</a
+>
+{% endblock footerlinks %}

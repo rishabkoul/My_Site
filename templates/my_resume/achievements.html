@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    {% for achievement in achievements %}
+    <div class="col s12 m6 center-align">
+      <a href="{{achievement.link}}"><h1>{{achievement.name}}</h1></a>
+      <a href="{{achievement.link}}"
+        ><img class="project-image" src="media/{{achievement.photo}}" alt=""
+      /></a>
+      <h2>{{achievement.a_type}}</h2>
+      <h3>{{achievement.description}}</h3>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %} {% block footerlinks %}
+<a class="grey-text text-lighten-4 right" href="mailto: {{resume.mail}}"
+  >Mail - {{resume.mail}}</a
+>
+{% endblock footerlinks %}

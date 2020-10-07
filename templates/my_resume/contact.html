@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block content %}
+<section class="container">
+  <form action="{% url 'send' %}" method="post">
+    {% if success %}
+    <div style="background-color: green" class="text-white">
+      <p>{{success}}</p>
+    </div>
+    {% endif %} {% if error %}
+    <div style="background-color: red" class="text-white">
+      <p>{{error}}</p>
+    </div>
+    {% endif %} {% csrf_token %}
+    <div style="margin-top: 10px" class="row">
+      <input type="text" name="name" placeholder="Enter Name" required />
+    </div>
+    <div class="row">
+      <input type="email" name="email" placeholder="Enter Email" required />
+    </div>
+    <div class="row">
+      <input type="text" name="subject" placeholder="Enter Subject" required />
+    </div>
+    <div class="row">
+      <textarea
+        style="height: 50%"
+        name="message"
+        placeholder="Enter Message"
+        id=""
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
+    <div class="row">
+      <button
+        class="btn waves-effect waves-light background-black"
+        type="submit"
+        name="action"
+      >
+        Send
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
+</section>
+{% endblock content %} {% block footerlinks %}
+<a class="grey-text text-lighten-4 right" href="mailto: {{resume.mail}}"
+  >Mail - {{resume.mail}}</a
+>
+{% endblock footerlinks %}
