@@ -26,14 +26,17 @@ def projects(request):
 
 
 def achievements(request):
+    resume = models.Resume.objects.get(mail='rishabkoul2001@gmail.com')
     achievements = models.Achievements.objects.all()
     context = {
-        "achievements": achievements
+        "achievements": achievements,
+        "resume": resume
     }
     return render(request, template_name='my_resume/achievements.html', context=context)
 
 
 def ContactCreateView(request, format=None):
+    resume = models.Resume.objects.get(mail='rishabkoul2001@gmail.com')
     data = request.POST
 
     try:
@@ -54,11 +57,15 @@ def ContactCreateView(request, format=None):
             name=data['name'], email=data['email'], subject=data['subject'], message=data['message'])
         contact.save()
 
-        return render(request, template_name='my_resume/contact.html', context={'success': "Message sent successfully"})
+        return render(request, template_name='my_resume/contact.html', context={'success': "Message sent successfully", 'resume': resume})
 
     except:
-        return render(request, template_name='my_resume/contact.html', context={'error': "Message failed to send"})
+        return render(request, template_name='my_resume/contact.html', context={'error': "Message failed to send", 'resume': resume})
 
 
 def contact(request):
-    return render(request, template_name='my_resume/contact.html')
+    resume = models.Resume.objects.get(mail='rishabkoul2001@gmail.com')
+    context = {
+        "resume": resume
+    }
+    return render(request, template_name='my_resume/contact.html', context=context)
